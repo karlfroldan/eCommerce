@@ -28,7 +28,7 @@
 
   <div class="field">
     <%= form.label :birthday %>
-    <%= form.date_select :birthday %>
+    <%= form.date_select :birthday, options={:use_short_month=>true, :start_year=>1970, :end_year=>2020} %>
   </div>
 
   <div class="field">
