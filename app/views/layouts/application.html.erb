@@ -10,6 +10,16 @@
   </head>
 
   <body>
+    
+    <% if session[:user_id] == nil then %>
+      <a href='/login'>Login</a>
+      <a href='/users/new'>Sign up</a>
+    <% else %>
+      <% current_user = User.find(session[:user_id]) %>
+      You're logged in as <%= current_user.full_name %>
+      | <a href='/logout'> Logout</a>
+    <% end %>
+    
     <%= yield %>
   </body>
 </html>
