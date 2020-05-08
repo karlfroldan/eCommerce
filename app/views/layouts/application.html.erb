@@ -1,28 +1,43 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>ECommerce</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+</head>
 
-  <body>
-    
-    <% if session[:user_id] == nil then %>
-      <a href='/login'>Login</a>
-      <a href='/users/new'>Sign up</a>
-    <% else %>
-      <% current_user = User.find(session[:user_id]) %>
-      You're logged in as 
-      <a href='/users/<%= session[:user_id] %>'>
-        <%= current_user.full_name %>
-      </a>
-      | <a href='/logout'> Logout</a>
-    <% end %>
-    
+<body>
+
+    <div class="jumbotron">
+        <h1 class="display-4"><%= link_to 'My Ecommerce Website', root_path %></h1>
+        <p class="lead">Final project of Karl Frederick Roldan, BS Computer Science of Trends in Application Development</p>
+        <hr class="my-4">
+        <p>
+            <% if session[:user_id] == nil then %>
+            <a href='/login'>Login</a>
+            <a href='/users/new'>Sign up</a>
+            <% else %>
+            <% current_user = User.find(session[:user_id]) %>
+            You're logged in as
+            <a href='/users/<%= session[:user_id] %>'>
+                <%= current_user.full_name %>
+            </a>
+            | <a href='/logout'> Logout</a>
+            <% end %>
+        </p>
+        <p id='search_bar'>
+            <%= form_tag('/items/find', method: :post) do %>
+            <%= text_field_tag :search_string %>
+            <%= submit_tag :search %>
+            <% end %>
+        </p>
+    </div>
+
     <%= yield %>
-  </body>
+</body>
+
 </html>

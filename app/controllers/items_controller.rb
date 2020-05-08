@@ -1,6 +1,10 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
+
+  def find 
+    @items = Item.where(item_name: params[:search_string])
+  end
   # GET /items
   # GET /items.json
   def index

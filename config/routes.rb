@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   # Logout
   get '/logout', to: 'pages#logout'
 
+  # Search
+  post '/items/find', to: 'items#find'
+
   resources :items
   resources :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

@@ -1,34 +1,16 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Items</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Item name</th>
-      <th>Price</th>
-      <th>Description</th>
-      <th>Owner</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    
-    <% @items.each do |item| %>
-    <% item_owner = User.find(item.user_id) %>
-      <tr>
-        <td><%= item.item_name %></td>
-        <td><%= item.price %></td>
-        <td><%= item.description %></td>
-        <td>
-          <a href='/users/<%= item_owner.id %>'>
-            <%= item_owner.full_name %>
-          </a>
-        </td>
-        <td><%= link_to 'Show', item %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% @items.each do |item| %>
+<% item_owner = User.find(item.user_id) %>
+<div class="card card_float" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title"><%= item.item_name %></h5>
+        <h6 class="card-subtitle mb-2 text-muted">₱<%= item.price %></h6>
+        <p class="card-text"><%= item.description %></p>
+        <a href="/users/<%= item.user_id %>" class="card-link">Posted by: <%= item_owner.full_name %></a>
+        <a href="/items/<%= item.id %>" class="card-link"><%= link_to 'Details', item %></a>
+    </div>
+</div>
+<% end %>
 <br>
