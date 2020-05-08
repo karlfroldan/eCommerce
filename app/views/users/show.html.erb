@@ -21,3 +21,6 @@
 </p>
 
 <%= link_to 'Back', root_path %>
+<%= link_to 'Create Item', new_item_path %>
+
+<%= render partial: 'show_items', locals: {items: @user.items} %>

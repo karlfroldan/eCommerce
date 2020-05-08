@@ -16,7 +16,10 @@
       <a href='/users/new'>Sign up</a>
     <% else %>
       <% current_user = User.find(session[:user_id]) %>
-      You're logged in as <%= current_user.full_name %>
+      You're logged in as 
+      <a href='/users/<%= session[:user_id] %>'>
+        <%= current_user.full_name %>
+      </a>
       | <a href='/logout'> Logout</a>
     <% end %>
     

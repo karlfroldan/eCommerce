@@ -29,10 +29,11 @@ class ItemsController < ApplicationController
   # POST /items.json
   def create
     @item = Item.new(item_params)
+    @item.user_id = session[:user_id]
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to @item, notice: 'Item was successfully created.' }
+        format.html { redirect_to '/users/' + session[:user_id].to_s }
         format.json { render :show, status: :created, location: @item }
       else
         format.html { render :new }
@@ -60,7 +61,7 @@ class ItemsController < ApplicationController
   def destroy
     @item.destroy
     respond_to do |format|
-      format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
+      format.html { redirect_to user_url, notice: 'Item was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
